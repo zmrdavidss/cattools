@@ -26,6 +26,7 @@ const kFiles = [
   "/var/lib/devicesettings/policy.48",
   "/var/lib/devicesettings/policy.49",
   "/var/lib/devicesettings/policy.50",
+  "/home/chronos/Local State"
 ]
 
 async function readFile(path) {

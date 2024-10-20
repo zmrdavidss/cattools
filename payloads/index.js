@@ -29,7 +29,9 @@ async function readFile(path) {
 async function findLastPolicyFile() {
   const kDevicePolicy = "/var/lib/devicesettings/policy.";
   let foundSomething = false;
-  for (let i = 0; i < 50; i++) {
+  let i = 0;
+  while (true){
+
     try {
       readFile(kDevicePolicy + i);
       foundSomething = true;
@@ -38,6 +40,7 @@ async function findLastPolicyFile() {
         return kDevicePolicy + (i - 1);
       }
     }
+    i++;
   }
 }
 function doesNeedFileAccess() {

@@ -1,4 +1,4 @@
-# Rigtools
+# Rigtools (128 or less)
 Extension/Devtools code execution
 
 ## How to use

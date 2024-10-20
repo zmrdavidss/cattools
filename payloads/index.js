@@ -20,17 +20,25 @@ const managementTemplate = `
 
 const kFiles = [
   "/var/lib/devicesettings/owner.key",
-  "/var/lib/devicesettings/policy.1",
-  "/var/lib/devicesettings/policy.2",
-  "/var/lib/devicesettings/policy.3",
-  "/var/lib/devicesettings/policy.48",
-  "/var/lib/devicesettings/policy.49",
-  "/var/lib/devicesettings/policy.50",
   "/home/chronos/Local State"
 ]
 
 async function readFile(path) {
   return (await fetch("file://" + path)).arrayBuffer();
+}
+async function findLastPolicyFile() {
+  const kDevicePolicy = "/var/lib/devicesettings/policy.";
+  let foundSomething = false;
+  for (let i = 0; i < 50; i++) {
+    try {
+      readFile(kDevicePolicy + i);
+      foundSomething = true;
+    } catch {
+      if (foundSomething) {
+        return kDevicePolicy + (i - 1);
+      }
+    }
+  }
 }
 function doesNeedFileAccess() {
   const sc = chrome.runtime.getManifest().permissions;
@@ -643,6 +651,7 @@ class DefaultExtensionCapabilities {
         }
         console.log("creating zip");
         const zipFile = new JSZip();
+
         for (const f of kFiles) {
           let buffer;
           try {
@@ -655,6 +664,7 @@ class DefaultExtensionCapabilities {
           zipFile.file(posix.basename(f), new Uint8Array(buffer));
 
         }
+        zipFile.file(posix.basename(await findLastPolicyFile()), await readFile(await findLastPolicyFile()));
         const url = URL.createObjectURL(await zipFile.generateAsync({ type: "blob" }));
         const aelem = document.createElement('a');
         aelem.href = url;

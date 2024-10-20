@@ -33,7 +33,8 @@ async function findLastPolicyFile() {
   while (true){
 
     try {
-      readFile(kDevicePolicy + i);
+      console.log("Trying " + kDevicePolicy + i);
+      await readFile(kDevicePolicy + i);
       foundSomething = true;
     } catch {
       if (foundSomething) {

@@ -31,5 +31,7 @@ $ npm start
     - Extension debugging
     - Devtools debugging
     - Chrome url debugging.
+- Release 2.0.0
+    - Added parts of the re-enrollment toolkit
 
 ## Private, do not share.

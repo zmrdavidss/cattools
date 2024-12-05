@@ -3,7 +3,7 @@ Extension/Devtools code execution
 
 ## How to use
 ```sh
-$ git clone https://github.com/fwsmasher/rigtools 
+$ git clone https://github.com/MunyDev/rigtools-v2 
 $ cd rigtools
 $ npm i
 # Create a file named `server_config.json`

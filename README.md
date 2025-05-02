@@ -1,4 +1,5 @@
-# Rigtools (128 or less)
+# CatTools (128 or less)
+## NOTE THIS IS A MODDIFICATION OF RIGTOOLS AND ALL CREDITS TO MUNDYDEV!
 Extension/Devtools code execution
 
 ## How to use
